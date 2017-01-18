@@ -55,6 +55,7 @@ abstract class VueInline
 	/**
 	 * Creates a new component instance.
 	 *
+	 * @param string $repository
 	 * @param string $component
      * @param  null|string|array $props The properties list to be pass to the component.
      * @return void

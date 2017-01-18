@@ -11,9 +11,9 @@
 
 namespace Gocanto\VueInline\Support;
 
-use Lang;
 use InvalidArgumentException;
 use Illuminate\Support\Collection;
+use Illuminate\Container\Container;
 
 class Parser
 {
@@ -66,10 +66,12 @@ class Parser
 	{
 		$key = $repository . (trim($component) == '' ? '' : '.' . $component);
 
-		if (! Lang::has($key)) {
-			return new Collection();
+		$translator = Container::getInstance()->make('translator');
+
+		if (! $translator->has($key)) {
+			return new Collection ();
 		}
 
-		return new Collection(Lang::get($key));
+		return new Collection ($translator->get($key));
 	}
 }

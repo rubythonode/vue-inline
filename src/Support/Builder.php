@@ -18,13 +18,6 @@ use Illuminate\Contracts\Config\Repository as Config;
 class Builder
 {
 	/**
-	 * The components namespace.
-	 *
-	 * @var string
-	 */
-	protected $namespace = '';
-
-	/**
 	 * It's the components class repository.
 	 *
 	 * @var string
@@ -52,7 +45,7 @@ class Builder
 		list($builder->repository, $builder->component) = Parser::parse($signature);
 
 		if (! $builder->isBuildable()) {
-			throw new RuntimeException("The component (" . $builder->className() .") is not valid or does not exist.");
+			throw new RuntimeException("The components repository (" . $builder->className() .") is not valid or does not exist.");
 		}
 
 		return $builder->create($props);
@@ -66,11 +59,7 @@ class Builder
 	 */
 	protected function isBuildable() : bool
 	{
-		$config = Container::getInstance()->make(Config::class);
-
-		$this->namespace = $config->get('vueinline.namespace');
-
-		return !! class_exists($this->namespace . $this->repository);
+		return !! class_exists($this->className());
 	}
 
 	/**
@@ -81,8 +70,6 @@ class Builder
 	 */
 	protected function create($props = null) : array
 	{
-		$props = Parser::parseProps($props);
-
 		if ($this->componentDoesNotExist()) {
 			throw new RuntimeException("
 				The required component (" . $this->component . ")
@@ -90,13 +77,7 @@ class Builder
 			");
 		}
 
-		$component = $this->component;
-
-		return Container::getInstance()->make($this->className(), [
-			$this->repository,
-			$component,
-			$props
-		])->$component();
+		return $this->buildRepository($props);
 	}
 
 	/**
@@ -116,6 +97,35 @@ class Builder
 	 */
 	protected function className() : string
 	{
-		return $this->namespace . ucfirst(strtolower($this->repository));
+		$config = Container::getInstance()->make('config');
+
+		//We get components namespace.
+		$namespace = $config->get('vueinline.namespace');
+
+		return $namespace . ucfirst(strtolower($this->repository));
+	}
+
+	/**
+	 * Builds a new repository with a given props.
+	 *
+	 * @param  null|string|array $props The properties list to be pass to the component.
+	 * @return array
+	 */
+	protected function buildRepository($props = null) : array
+	{
+		//Example component signature (users:profile)
+
+		//The component asked for. In this case, component is equal to "profile".
+		$component = $this->component;
+
+		//The components repository. In this case, component is equal to "users"
+		//which would be the class where the components body are.
+		$className = $this->className();
+
+		//Creates the component repository. In this case, repository is equal to "Namespace\Users".
+		$repository = new $className($this->repository, $component, Parser::parseProps($props));
+
+		//Returns the component information. In this case, component is equal to "profile".
+		return $repository->$component();
 	}
 }
