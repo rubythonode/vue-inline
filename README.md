@@ -42,19 +42,46 @@ The package is shipped with two ways to building repositories. The first one can
 
 The constructor takes two parameters, the first one is the component signature, and the second is any optional external data you wish to pass down to the component. 
 
-* Example without external data ```php component('users:profile');```
+* Example ***without*** external data, <a href="https://github.com/gocanto/vue-inline/blob/master/tests/VueInlineTest.php#L20" _target="blank">See example</a>.
 
-* Example with external data ```php component('users:emailpetitions', [
-    'email' => [
-        'subject' => 'Testing this package',
-        'to' => 'gustavoocanto@gmail.com',
-        'name' => 'Gustavo Ocanto',
-    ]
-]);```
+* Example ***with*** external data, <a href="https://github.com/gocanto/vue-inline/blob/master/tests/VueInlineTest.php#L64" _target="blank">See example</a>. 
 
 
 
+# Create a repository
 
+To create a ***new repository***, you will have to create a new class within the namespace specified in the configuration file. Then you have to extends from it in order for you to make use of its functionality. As so, 
+
+```php
+use Gocanto\VueInline\VueInline;
+
+class Users extends VueInline
+{
+    public function profile()
+    {
+        //
+    }
+}
+```
+
+To create a ***new component*** within the existing repository, you will have to type as many methods as components you wish to have in this repository. As shown above with the ***profile*** method.
+
+
+# How to build a component body
+
+To make a component body you will have to call the methods from the component create, As so,
+
+```php
+public function profile()
+{
+    return $this->tagName('users-profile')
+        ->withAlerts()
+        ->withTrans()
+        ->whitErrors()
+        ->render();
+}
+
+```
 
 
 
