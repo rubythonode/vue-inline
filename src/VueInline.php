@@ -15,7 +15,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Container\Container;
 use Gocanto\VueInline\Support\Parser;
 
-abstract class VueComponent
+abstract class VueInline
 {
 	/**
 	 * It's the components class repository.
