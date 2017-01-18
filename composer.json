@@ -1,0 +1,50 @@
+{
+    "license": "MIT",
+    "name": "gocanto/vue-inline",
+    "homepage": "https://github.com/gocanto/vue-inline",
+    "type": "laravel-bundle",
+    "description": "An expressive and organized to handle Vue inline component with Laravel.",
+    "keywords": ["expressive", "organized", "vuejs", "inline", "components", "laravel"],
+    "minimum-stability": "dev",
+
+    "support": {
+        "source": "https://github.com/gocanto/vue-inline",
+        "issues": "https://github.com/gocanto/vue-inline/issues"
+    },
+
+    "require": {
+        "php": "~7.0|~7.1",
+        "nesbot/carbon": "^1.21"
+    },
+
+    "require-dev": {
+        "phpunit/phpunit": "^5.6",
+        "orchestra/testbench": "^3.3",
+        "mockery/mockery": "dev-master"
+    },
+
+    "autoload": {
+        "classmap": [
+            "database"
+        ],
+        "psr-4": {
+            "Gocanto\\VueInline\\": "src/"
+        },
+        "files": [
+            "src/Support/helpers.php"
+        ]
+    },
+
+    "autoload-dev": {
+        "psr-4": {
+            "Gocanto\\VueInline\\Tests\\": "tests"
+        },
+        "classmap": [
+            "tests/TestCase.php"
+        ]
+    },
+
+    "scripts": {
+        "test": "./vendor/bin/phpunit"
+    }
+}
