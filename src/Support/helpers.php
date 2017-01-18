@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+use Gocanto\VueInline\Support\Builder;
+
 if (! function_exists('component')) {
     /**
      * Returns the vue components props for a given signature.

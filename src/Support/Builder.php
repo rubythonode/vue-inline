@@ -12,6 +12,7 @@
 namespace Gocanto\VueInline\Support;
 
 use RuntimeException;
+use Illuminate\Container\Container;
 use Illuminate\Contracts\Config\Repository as Config;
 
 class Builder

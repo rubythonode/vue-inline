@@ -36,7 +36,7 @@ class VueInlineServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../config/' => config_path()
-        ], 'vueinline-config');
+        ], 'vueinline');
     }
 
     /**
