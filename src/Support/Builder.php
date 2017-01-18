@@ -12,6 +12,7 @@
 namespace Gocanto\VueInline\Support;
 
 use RuntimeException;
+use Illuminate\Contracts\Config\Repository as Config;
 
 class Builder
 {
@@ -64,7 +65,9 @@ class Builder
 	 */
 	protected function isBuildable() : bool
 	{
-		$this->namespace = config('vueinline.namespace');
+		$config = Container::getInstance()->make(Config::class);
+
+		$this->namespace = $config->get('vueinline.namespace');
 
 		return !! class_exists($this->namespace . $this->repository);
 	}
@@ -88,7 +91,7 @@ class Builder
 
 		$component = $this->component;
 
-		return app()->make($this->className(), [
+		return Container::getInstance()->make($this->className(), [
 			$this->repository,
 			$component,
 			$props
