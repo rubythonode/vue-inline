@@ -28,7 +28,7 @@ class VueInlineServiceProvider extends ServiceProvider
     }
 
     /**
-     * Publish the antvel resources files.
+     * Publish the VueInline resources files.
      *
      * @return void
      */
