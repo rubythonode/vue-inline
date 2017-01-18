@@ -3,7 +3,7 @@
     "name": "gocanto/vue-inline",
     "homepage": "https://github.com/gocanto/vue-inline",
     "type": "laravel-bundle",
-    "description": "An expressive and organized to handle Vue inline component with Laravel.",
+    "description": "An expressive and organized way to handle Vue inline component with Laravel.",
     "keywords": ["expressive", "organized", "vuejs", "inline", "components", "laravel"],
     "minimum-stability": "dev",
 
