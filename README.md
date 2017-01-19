@@ -18,7 +18,7 @@ Instead of having something like this within your controllers:
 ```php
 return view('users.profile', [
     'component' => [
-        'is' => 'users:profile',
+        'is' => 'users-profile',
         'profile'  => [
             'subject' => 'Gustavo',
             'name' => 'gustavoocanto@gmail.com'
