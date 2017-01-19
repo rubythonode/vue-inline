@@ -14,7 +14,10 @@
 
     "require": {
         "php": "~7.0|~7.1",
-        "nesbot/carbon": "^1.21"
+        "nesbot/carbon": "^1.21",
+        "illuminate/support": "^5.3",
+        "illuminate/container": "^5.3",
+        "illuminate/contracts": "^5.3"
     },
 
     "require-dev": {
