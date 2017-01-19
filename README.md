@@ -1,4 +1,10 @@
-# vue-inline
+# Vue Inline
+
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/gocanto/vue-inline.svg?style=flat-square)](https://img.shields.io/packagist/v/gocanto/vue-inline.svg)
+
+<a href="https://github.com/gocanto/vue-inline/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/easiest-js-validator.svg" alt="License"></a>
+
+[![Total Downloads](https://img.shields.io/packagist/dt/gocanto/vue-inline.svg?style=flat-square)](https://img.shields.io/packagist/dt/gocanto/vue-inline.svg?style=flat-square)
 
 Vue inline is a beta package wich goal is not more than keeping a confident and organized data source. Each of repositories that extend from it is meant to maintain separate concerns.
 
@@ -67,6 +73,9 @@ class Users extends VueInline
 To create a ***new component*** within the existing repository, you will have to type as many methods as components you wish to have in this repository. As shown above with the ***profile*** method.
 
 
+<a href="https://github.com/gocanto/vue-inline/blob/master/tests/Components/Users.php" _target="blank">See demo here</a>
+
+
 # How to build a component body
 
 To make a component body you will have to call the methods from the component create, As so,
@@ -78,10 +87,75 @@ public function profile()
         ->withAlerts()
         ->withTrans()
         ->whitErrors()
+        ->withProps([
+            'email' => [
+                'subject' => 'testing',
+                'name' => 'Gustavo Ocanto',
+                'to' => 'gustavoocanto@gmail.com',
+            ]
+        ])
         ->render();
 }
 
 ```
+
+<a href="https://github.com/gocanto/vue-inline/blob/master/tests/Components/Users.php" _target="blank">See demo here</a>
+
+
+
+# What each method does
+
+* tagName: Set the component identifier in order for it to be picked up from Vue.js. Example: <component is="tagName"></component>
+
+* withAlerts: Set a translation array with translations to be used within your JS, as a confirmation dialog.
+
+* whitErrors: Set a translation array with translations to show some errors within your JS, as a confirmation dialog.
+
+* withTrans: Set a translation array with translations to be used within your JS.
+
+* withDefault: Sometimes you need to make use of all these translations, so this method is just a sugar that includes the errors, alerts and translates. 
+
+* withProps: Set external data to be passed down to the Vue.js component as additional properties.
+
+* render: Returns an array with the component props body and identifier.
+
+<a href="https://github.com/gocanto/vue-inline/blob/master/tests/Components/Users.php" _target="blank">See demo here</a>
+
+
+# How translations are selected
+
+Translations are selected by the composition between the ***repository*** and the ***component*** asked for. For example, if the request was something like this ```php component('users:profile')```, then translations would be picked up as so, ```php trans('users.profile)```.
+
+Sometimes you need to create a different component, but you want to use the same group of translations used by another component, so you will have to call ```php ->loadTransFrom('profile')``` method within a component creation process. Then you will have the profiles translations available in it. Example can be seen <a href="https://github.com/gocanto/vue-inline/blob/master/tests/Components/Users.php#L50" _target="blank">here</a>
+
+<a href="https://github.com/gocanto/vue-inline/blob/master/resources/lang/en/users.php" _target="blank">Translation file example</a>
+
+
+# The errors list
+
+The errors list are picked up either from its translation section or from a errors language file. See the validation right <a href="https://github.com/gocanto/vue-inline/blob/master/src/VueInline.php#L104" _target="blank">here</a>
+
+<a href="https://github.com/gocanto/vue-inline/blob/master/resources/lang/en/errors.php" _target="blank">Translation errors file example</a>
+
+
+# Contributing
+
+Please feel free to fork this package and contribute by submitting a pull request to enhance the functionalities.
+
+
+# License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+
+
+Don't forget to [follow me on twitter](https://twitter.com/gocanto)!
+
+Thanks!
+
+Gustavo Ocanto.
+gustavoocanto@gmail.com
+
 
 
 
