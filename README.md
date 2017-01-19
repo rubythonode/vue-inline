@@ -1,9 +1,7 @@
 # Vue Inline
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/gocanto/vue-inline.svg?style=flat-square)](https://img.shields.io/packagist/v/gocanto/vue-inline.svg)
-
 <a href="https://github.com/gocanto/vue-inline/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/easiest-js-validator.svg" alt="License"></a>
-
 [![Total Downloads](https://img.shields.io/packagist/dt/gocanto/vue-inline.svg?style=flat-square)](https://img.shields.io/packagist/dt/gocanto/vue-inline.svg?style=flat-square)
 
 Vue inline is a beta package wich goal is not more than keeping a confident and organized data source. Each of repositories that extend from it is meant to maintain separate concerns.
