@@ -9,6 +9,32 @@ Vue inline is a beta package wich goal is not more than keeping a confident and 
 I created this solution after dealing with Vue. js templates and Blade. The solution is an approach to keep organized and centralized the information passed down to each Vue.js components using the inline-template attribute.
 
 
+# Who is this for?
+
+This package is meant to be for those developers who do not like to have everything mixed out. Those who like to have everything in the right place and organized. For examples: 
+
+Instead of having something like this within your controllers: 
+
+```php
+return view('users.profile', [
+    'component' => [
+        'is' => 'users:profile',
+        'profile'  => [
+            'subject' => 'Gustavo',
+            'name' => 'gustavoocanto@gmail.com'
+        ]
+    ]
+]);
+```
+
+you will be able to decouple concerns and have everything coded as reusable as possible, like so: 
+
+```php
+return view('users.profile', [
+    'component' => component('users:profile', ['profile' => $user])
+]);
+```
+
 
 # Installation
 
