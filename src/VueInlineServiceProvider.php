@@ -16,6 +16,13 @@ use Illuminate\Support\ServiceProvider;
 class VueInlineServiceProvider extends ServiceProvider
 {
     /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = true;
+
+    /**
      * Bootstrap the application services.
      *
      * @return void
@@ -47,5 +54,15 @@ class VueInlineServiceProvider extends ServiceProvider
     public function register()
     {
         //
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return ['vue-inline'];
     }
 }
